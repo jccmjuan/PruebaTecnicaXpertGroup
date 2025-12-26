@@ -26,8 +26,9 @@ Controlador Usuarios:
 El controlador debe tener 2 acción:
 
     • GET /login :
-
 Debe permitir verificar en una colección de Mongo la existencia de un usuario y validar su contraseña y retorna la información del usuario.
+
     • GET /Register :
+Debe permitir registrar en una colección de Mongo un usuario con los datos básicos de registro.
 
     
