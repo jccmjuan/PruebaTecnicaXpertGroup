@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Net.Http.Json;
@@ -10,13 +11,12 @@ namespace Infraestructure
     {
 
         private readonly HttpClient _httpClient;
-        private const string ApiKey = "live_JBT0Ah0Nt12iyl2IpjQVLDWjcLk0GQwf4zI9wBMfmfejKmcC31mOJp4yJz5TsOUP";
 
-        public CatApi(HttpClient httpClient)
+        public CatApi(HttpClient httpClient, IConfiguration config)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri("https://api.thecatapi.com/v1/");
-            _httpClient.DefaultRequestHeaders.Add("x-api-key", ApiKey);
+            _httpClient.DefaultRequestHeaders.Add("x-api-key", config.GetSection("AccessKey").ToString());
         }
 
         public async Task<IEnumerable<dynamic>> GetBreedsAsync()
